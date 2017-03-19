@@ -78,7 +78,7 @@ function buildTypedUrlList(divName) {
   var processVisits = function(url, visitItems) {
     for (var i = 0, ie = visitItems.length; i < ie; ++i) {
       // Ignore items unless the user typed the URL.
-      if (visitItems[i].transition != 'typed') {
+      if (visitItems[i].transition != 'link') {
         continue;
       }
 
@@ -110,7 +110,8 @@ function buildTypedUrlList(divName) {
       return urlToCount[b] - urlToCount[a];
     });
 
-    buildPopupDom(divName, urlArray.slice(0, 10));
+    // buildPopupDom(divName, urlArray.slice(0, 10));
+    buildPopupDom(divName, urlArray);
   };
 }
 

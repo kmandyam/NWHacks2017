@@ -80,7 +80,7 @@ function buildTypedUrlList(divName) {
     for (var i = 0, ie = visitItems.length; i < ie; ++i) {
       // Ignore items unless the user typed the URL.
 
-      if (visitItems[i].transition != 'link') {
+      if (visitItems[i].transition != 'typed') {
         continue;
       }
 
@@ -105,7 +105,13 @@ function buildTypedUrlList(divName) {
     // Get the top scorring urls.
     urlArray = [];
     for (var url in urlToCount) {
-      urlArray.push(url);
+      if(url.includes("buzzfeed") || url.includes("facebook")){
+        urlArray.push(url);
+      }
+      // if(true){
+      //   urlArray.push(url);
+      // }
+      // urlArray.push(url);
     }
 
     // Sort the URLs by the number of times the user typed them.

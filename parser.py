@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib
+<<<<<<< HEAD
 import csv
 from flask import Flask
 from flask import request
@@ -9,6 +10,30 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route("/parse" , methods=['GET', 'POST'])
+=======
+#import csv
+#import sys
+#import os
+
+#args = sys.argv[1:]
+#folder = args[1]
+#need to find a better way to get the url in here
+url = args[0]
+html = urllib.urlopen(url).read()
+soup = BeautifulSoup(html, "html.parser")
+
+# find the appropriate bucket to be in
+#publisher = url.split("/")[2].split("www.")[1]
+#fileArray = []
+#with open(csv_file, 'publisher_data') as csvfile:#
+    #get the columns
+    #for line in csv file.readlines():
+#        fileArray = line.split(',')
+
+# kill all script and style elements
+for script in soup(["script", "style"]):
+    script.extract()    # rip it out
+>>>>>>> 90c5076d38a17cc5469d86ebfbfa14d19707c6b4
 
 def parse():
     # # url = "https://www.theatlantic.com/international/archive/2017/03/trump-playboy-merkel/520014/"
@@ -34,4 +59,15 @@ def parse():
     urlArray = request.form['urlArray']
     return "hey"
 
+<<<<<<< HEAD
 app.run()
+=======
+#filename = args[2]
+#path = "train/" + folder
+#complete_name = os.path.join(path, filename)
+#f = open(filename, "w+")
+
+f.write(text.encode('utf-8'))
+
+print(text.encode('utf-8'))
+>>>>>>> 90c5076d38a17cc5469d86ebfbfa14d19707c6b4

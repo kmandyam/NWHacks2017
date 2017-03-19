@@ -1,7 +1,7 @@
 {
-  "name": "Typed URL History",
+  "name": "Spectrum",
   "version": "1.2",
-  "description": "Reads your history, and shows the top ten pages you go to by typing the URL.",
+  "description": "Exposing your political biases.",
   "permissions": [
     "history"
   ],

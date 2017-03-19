@@ -80,7 +80,7 @@ function buildTypedUrlList(divName) {
     for (var i = 0, ie = visitItems.length; i < ie; ++i) {
       // Ignore items unless the user typed the URL.
 
-      if (visitItems[i].transition != 'typed') {
+      if (visitItems[i].transition != 'link') {
         continue;
       }
 
@@ -104,7 +104,8 @@ function buildTypedUrlList(divName) {
   var onAllVisitsProcessed = function() {
     // Get the top scorring urls.
     urlArray = [];
-    // substrings = ["facebook", "buzzfeed"];
+
+    // Looking for all the news related articles
     substrings = ["msn", "drudgereport", "espn", "cnn", "foxnews", "wwd", "nytimes", "buzzfeed", "usatoday", "huffingtonpost", "washingtonpost",
                   "forbes", "bbc", "dailymail", "cnet", "nbc", "popsugar", "bloomberg", "liveleak", "abc", "ksl", "mydailynews",
                   "politico", "breitbart", "sfgate", "npr", "cbs", "guardian", "rawstory", "people", "seekingalpha", "businessinsider",

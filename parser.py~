@@ -1,0 +1,11 @@
+from bs4 import BeautifulSoup
+import requests
+url = raw_input("Enter a URL")
+r = requests.get(url)
+data = r.text
+soup = BeautifulSoup(data, "html.parser")
+
+texts = soup.find_all(text=True)
+print texts
+
+

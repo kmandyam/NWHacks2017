@@ -47,9 +47,9 @@ function buildPopupDom(divName, datas) {
       var tickerPos = (result + 100) / 2;
       console.log(tickerPos);
       $("#exposure_title").text(position);
-      $("#exposure_ticker").css("margin-left", tickerPos);
+      $(".exposure_ticker").css("margin-left", tickerPos + "%");
       $( "#finalscore" ).html( "<strong>" + Math.abs(result) + "%</strong>" );
-
+      $("#lean").text(position);
     }
   });
 
@@ -63,17 +63,16 @@ function buildPopupDom(divName, datas) {
         var creditiblity = "";
         result = parseInt(result);
         if(0 < result && result <= 33){
-             creditiblity = "Low Credibility"
-          }
-          elif(34 < result && result  <= 67){
-             creditiblity = "Medium Credibility"
-          }
-          else(68 < result && result <= 100){
-             creditiblity = "High Credibility"
-          }
+             creditiblity = "Low Credibility";
+        }else if(34 < result && result  <= 67){
+             creditiblity = "Medium Credibility";
+        }else if(68 < result && result <= 100){
+             creditiblity = "High Credibility";
+        }
       $("#credibility_title").text(creditiblity);
-      $("#credibility_ticker").css("margin-left", result);
+      $(".credibility_ticker").css("margin-left", result + "%");
       $( "#credibility" ).html( "<strong>" + Math.abs(result) + "%</strong>" );
+      $("#suggest_credibility").text(creditiblity);
     }
   });
 

@@ -1,24 +1,24 @@
 "use strict";
 
 (function(){
-	var exposureScore = -40;
-	var credibilityScore = 79;
+	// var exposureScore = -40;
+	// var credibilityScore = 79;
 
 	window.onload = function() {
-		calculateInput();
-		renderExposureScore();
-		renderCredibilityScore();
+		// calculateInput();
+		// renderExposureScore();
+		// renderCredibilityScore();
 	}
 
-	function calculateInput() {
-
-	}
-
-	function renderExposureScore() {
-		$("#finalscore").text() = exposureScore;
-	}
-
-	function renderCredibilityScore() {
-		$("#credibility").text() = credibilityScore;
-	}
+	// function calculateInput() {
+	//
+	// }
+	//
+	// function renderExposureScore() {
+	// 	$("#finalscore").text() = exposureScore;
+	// }
+	//
+	// function renderCredibilityScore() {
+	// 	$("#credibility").text() = credibilityScore;
+	// }
 })();

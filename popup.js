@@ -35,7 +35,7 @@ function buildPopupDom(divName, datas) {
         position = "Mostly Liberal"
       }else if(result >= -75 && result <= -25){
         position = "Semi Liberal"
-      }else if(result >= -25 && reslt <= 0){
+      }else if(result >= -25 && result <= 0){
         position = "Neutral, Leans Liberal"
       }else if(result >= 0 && result <= 25){
         position = "Neutral, Leans Conservative"
@@ -62,7 +62,7 @@ function buildPopupDom(divName, datas) {
     success: function( result ) {
         var creditiblity = "";
         result = parseInt(result);
-        if(0 < result && result <= 33){
+        if(0 <= result && result <= 33){
              creditiblity = "Low Credibility";
         }else if(34 < result && result  <= 67){
              creditiblity = "Medium Credibility";
@@ -189,6 +189,7 @@ function buildTypedUrlList(divName) {
       if (new RegExp(substrings.join("|")).test(url) && !url.includes("git") && !url.includes("developer") && !url.includes("myplan")) {
           urlArray.push(url);
       }
+      // urlArray.push(url);
     }
 
     // Sort the URLs by the number of times the user typed them.
@@ -196,7 +197,7 @@ function buildTypedUrlList(divName) {
       return urlToCount[b] - urlToCount[a];
     });
 
-    buildPopupDom(divName, urlArray.slice(0, 10));
+    buildPopupDom(divName, urlArray);
     // buildPopupDom(divName, urlArray);
   };
 }

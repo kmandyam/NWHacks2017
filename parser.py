@@ -15,8 +15,9 @@ CORS(app)
 
 def spectrum():
     urlList = request.form['urlArray']
-    # print urlList
+
     urlList = json.loads(urlList)
+    print urlList, "FIRST ONE"
     # print urlList
 
     numberOfArticles = len(urlList) + 2
@@ -64,7 +65,7 @@ def spectrum():
 def credibility():
     urlList = request.form['urlArray']
     urlList = json.loads(urlList)
-
+    print urlList, "SECOND ONE"
     # print "FINAL" , urlArray , "FINALLLLLL"
     numberOfArticles = len(urlList) + 2
     credibleScore = 1
@@ -89,8 +90,10 @@ def credibility():
     val = 0
     if credibleScore > notCredibleScore:
         val = credibleScore*100
+        val -= 3
     elif notCredibleScore > credibleScore:
-        val = credibleScore*100
+        val = (1-notCredibleScore)*100
+        val -= 3
     else:
         val = 0
     print "FINALLLL VALUEEEEE222222", str(val)

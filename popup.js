@@ -123,10 +123,7 @@ function buildTypedUrlList(divName) {
                   "pbs", "associated", "aol", "consumer", "nation", "occupy", "uncut", "nationalreview"];
 
     for (var url in urlToCount) {
-      // if(url.includes("buzzfeed") || url.includes("facebook")){
-      //   urlArray.push(url);
-      // }
-      if (new RegExp(substrings.join("|")).test(url)) {
+      if (new RegExp(substrings.join("|")).test(url) && !url.includes("git") && !url.includes("cse")) {
           urlArray.push(url);
       }
     }

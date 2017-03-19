@@ -14,16 +14,28 @@ function onAnchorClick(event) {
 
 // Given an array of URLs, build a DOM list of those URLs in the
 // browser action popup.
-function buildPopupDom(divName, data) {
+function buildPopupDom(divName, datas) {
   var popupDiv = document.getElementById(divName);
 
   var ul = document.createElement('ul');
   popupDiv.appendChild(ul);
 
-  for (var i = 0, ie = data.length; i < ie; ++i) {
+
+  $.ajax({
+    type: "POST",
+    url: "http://localhost:5000/parse",
+    data: {
+      urlArray: JSON.stringify(datas)
+    },
+    success: function( result ) {
+      $( "#finalscore" ).html( "<strong>" + result + "</strong> degrees" );
+    }
+  });
+
+  for (var i = 0, ie = datas.length; i < ie; ++i) {
     var a = document.createElement('a');
-    a.href = data[i];
-    a.appendChild(document.createTextNode(data[i]));
+    a.href = datas[i];
+    a.appendChild(document.createTextNode(datas[i]));
     a.addEventListener('click', onAnchorClick);
 
     var li = document.createElement('li');
@@ -134,8 +146,8 @@ function buildTypedUrlList(divName) {
       return urlToCount[b] - urlToCount[a];
     });
 
-    // buildPopupDom(divName, urlArray.slice(0, 10));
-    buildPopupDom(divName, urlArray);
+    buildPopupDom(divName, urlArray.slice(0, 10));
+    // buildPopupDom(divName, urlArray);
   };
 }
 

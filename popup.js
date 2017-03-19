@@ -38,7 +38,7 @@ function buildPopupDom(divName, data) {
 function buildTypedUrlList(divName) {
   // To look for history items visited in the last week,
   // subtract a week of microseconds from the current time.
-  var microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7 * 4;
+  var microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7 * 4 * 12;
   var oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
 
   // Track the number of callbacks from chrome.history.getVisits()
@@ -47,7 +47,8 @@ function buildTypedUrlList(divName) {
 
   chrome.history.search({
       'text': '',              // Return every history item....
-      'startTime': oneWeekAgo  // that was accessed less than one week ago.
+      'startTime': oneWeekAgo,  // that was accessed less than one week ago.
+      'maxResults': 1000
     },
     function(historyItems) {
       // For each history item, get details on all visits.
@@ -78,9 +79,11 @@ function buildTypedUrlList(divName) {
   var processVisits = function(url, visitItems) {
     for (var i = 0, ie = visitItems.length; i < ie; ++i) {
       // Ignore items unless the user typed the URL.
+
       if (visitItems[i].transition != 'link') {
         continue;
       }
+
 
       if (!urlToCount[url]) {
         urlToCount[url] = 0;

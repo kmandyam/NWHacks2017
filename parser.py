@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import urllib
 
-url = "http://cedricith.com/"
+url = "https://www.theatlantic.com/international/archive/2017/03/trump-playboy-merkel/520014/"
 html = urllib.urlopen(url).read()
 soup = BeautifulSoup(html, "html.parser")
 

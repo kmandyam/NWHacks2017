@@ -28,6 +28,7 @@ function buildPopupDom(divName, datas) {
       urlArray: JSON.stringify(datas)
     },
     success: function( result ) {
+      result = Math.abs(parseInt(result))
       $( "#finalscore" ).html( "<strong>" + result + "</strong>" );
     }
   });
@@ -39,6 +40,9 @@ function buildPopupDom(divName, datas) {
       urlArray: JSON.stringify(datas)
     },
     success: function( result ) {
+
+      result = Math.abs(parseInt(result))
+
       $( "#credibility" ).html( "<strong>" + result + "</strong>" );
     }
   });

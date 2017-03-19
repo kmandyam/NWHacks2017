@@ -44,11 +44,28 @@ p {
 	font-size: 1.1rem;
 }
 
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
 .navbar {
 	padding: 20px 0;
 	color: white;
 	margin-top: 50px;
 	margin-bottom: 0;
+
+}
+
+.navbar_logo {
+	display: flex;
+	align-items: center;
+}
+
+#sm_newspaper {
+	width: 60px;
+	height: auto;
+	margin-right: 20px;
 }
 
 .landing {}
@@ -131,6 +148,7 @@ p {
 	margin-top: 25px;
 	margin-bottom: 25px;
 	text-align: center;
+	font-weight: bold;
 }
 
 .result_spectrum {
@@ -162,4 +180,30 @@ p {
 
 .credibility {
 	text-align: center;
+}
+
+.ticker {
+	background-color: #181818;
+	height: 100%;
+	width: 4px;
+}
+
+.exposure_ticker {
+	margin-left: 49%;
+}
+
+.credibility_ticker {
+	margin-left: 96%;
+}
+
+.triangle {
+	position: absolute;
+    width: 40px;
+    margin-left: -20px;
+    margin-top: -30px;
+}
+
+.footer {
+	text-align: center;
+	color: white;
 }

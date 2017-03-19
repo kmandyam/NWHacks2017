@@ -28,8 +28,8 @@ function buildPopupDom(divName, datas) {
       urlArray: JSON.stringify(datas)
     },
     success: function( result ) {
-      var position = ""
-      result = parseInt(result)
+      var position = "";
+      result = parseInt(result);
       if(result <= -75){
         //really liberal
         position = "Mostly Liberal"
@@ -44,10 +44,12 @@ function buildPopupDom(divName, datas) {
       }else if(result >= 75){
         position = "Mostly Conservative"
       }
+      var tickerPos = (result + 100) / 2;
+      console.log(tickerPos);
+      $("#exposure_title").text(position);
+      $("#exposure_ticker").css("margin-left", tickerPos);
+      $( "#finalscore" ).html( "<strong>" + Math.abs(result) + "%</strong>" );
 
-      result = Math.abs(result)
-      $( "#finalscore" ).html( "<strong>" + result + "%</strong>" );
-      
     }
   });
 
@@ -58,10 +60,20 @@ function buildPopupDom(divName, datas) {
       urlArray: JSON.stringify(datas)
     },
     success: function( result ) {
-
-      result = Math.abs(parseInt(result))
-
-      $( "#credibility" ).html( "<strong>" + result + "%</strong>" );
+        var creditiblity = "";
+        result = parseInt(result);
+        if(0 < result && result <= 33){
+             creditiblity = "Low Credibility"
+          }
+          elif(34 < result && result  <= 67){
+             creditiblity = "Medium Credibility"
+          }
+          else(68 < result && result <= 100){
+             creditiblity = "High Credibility"
+          }
+      $("#credibility_title").text(creditiblity);
+      $("#credibility_ticker").css("margin-left", result);
+      $( "#credibility" ).html( "<strong>" + Math.abs(result) + "%</strong>" );
     }
   });
 

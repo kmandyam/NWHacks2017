@@ -28,8 +28,26 @@ function buildPopupDom(divName, datas) {
       urlArray: JSON.stringify(datas)
     },
     success: function( result ) {
-      result = Math.abs(parseInt(result))
-      $( "#finalscore" ).html( "<strong>" + result + "</strong>" );
+      var position = ""
+      result = parseInt(result)
+      if(result <= -75){
+        //really liberal
+        position = "Mostly Liberal"
+      }else if(result >= -75 && result <= -25){
+        position = "Semi Liberal"
+      }else if(result >= -25 && reslt <= 0){
+        position = "Neutral, Leans Liberal"
+      }else if(result >= 0 && result <= 25){
+        position = "Neutral, Leans Conservative"
+      }else if(result >= 25 && result <= 75){
+        position = "Semi Conservative"
+      }else if(result >= 75){
+        position = "Mostly Conservative"
+      }
+
+      result = Math.abs(result)
+      $( "#finalscore" ).html( "<strong>" + result + "%</strong>" );
+      
     }
   });
 
@@ -43,7 +61,7 @@ function buildPopupDom(divName, datas) {
 
       result = Math.abs(parseInt(result))
 
-      $( "#credibility" ).html( "<strong>" + result + "</strong>" );
+      $( "#credibility" ).html( "<strong>" + result + "%</strong>" );
     }
   });
 

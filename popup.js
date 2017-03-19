@@ -156,9 +156,6 @@ function buildTypedUrlList(divName) {
       if (new RegExp(substrings.join("|")).test(url) && !url.includes("git") && !url.includes("developer") && !url.includes("myplan")) {
           urlArray.push(url);
       }
-      // if (new RegExp(substrings.join("|")).test(url) && !url.includes("git") && !url.includes("developer")) {
-      //     urlArray.push(url);
-      // }
     }
 
     // Sort the URLs by the number of times the user typed them.
@@ -166,7 +163,7 @@ function buildTypedUrlList(divName) {
       return urlToCount[b] - urlToCount[a];
     });
 
-    buildPopupDom(divName, urlArray);
+    buildPopupDom(divName, urlArray.slice(0, 10));
     // buildPopupDom(divName, urlArray);
   };
 }

@@ -1,10 +1,12 @@
 from bs4 import BeautifulSoup
 import urllib
+import csv
 
 url = "https://www.theatlantic.com/international/archive/2017/03/trump-playboy-merkel/520014/"
 html = urllib.urlopen(url).read()
 soup = BeautifulSoup(html, "html.parser")
 
+publisher = url.split("/")[2].split("www.")[1]
 # kill all script and style elements
 for script in soup(["script", "style"]):
     script.extract()    # rip it out

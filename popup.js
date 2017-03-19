@@ -14,23 +14,46 @@ function onAnchorClick(event) {
 
 // Given an array of URLs, build a DOM list of those URLs in the
 // browser action popup.
-function buildPopupDom(divName, data) {
-  var popupDiv = document.getElementById(divName);
+function buildPopupDom(divName, datas) {
+  // var popupDiv = document.getElementById(divName);
+  //
+  // var ul = document.createElement('ul');
+  // popupDiv.appendChild(ul);
 
-  var ul = document.createElement('ul');
-  popupDiv.appendChild(ul);
 
-  for (var i = 0, ie = data.length; i < ie; ++i) {
-    var a = document.createElement('a');
-    a.href = data[i];
-    a.appendChild(document.createTextNode(data[i]));
-    a.addEventListener('click', onAnchorClick);
+  $.ajax({
+    type: "POST",
+    url: "http://localhost:5000/spectrum",
+    data: {
+      urlArray: JSON.stringify(datas)
+    },
+    success: function( result ) {
+      $( "#finalscore" ).html( "<strong>" + result + "</strong>" );
+    }
+  });
 
-    var li = document.createElement('li');
-    li.appendChild(a);
+  $.ajax({
+    type: "POST",
+    url: "http://localhost:5000/credibility",
+    data: {
+      urlArray: JSON.stringify(datas)
+    },
+    success: function( result ) {
+      $( "#credibility" ).html( "<strong>" + result + "</strong>" );
+    }
+  });
 
-    ul.appendChild(li);
-  }
+  // for (var i = 0, ie = datas.length; i < ie; ++i) {
+  //   var a = document.createElement('a');
+  //   a.href = datas[i];
+  //   a.appendChild(document.createTextNode(datas[i]));
+  //   a.addEventListener('click', onAnchorClick);
+  //
+  //   var li = document.createElement('li');
+  //   li.appendChild(a);
+  //
+  //   ul.appendChild(li);
+  // }
 }
 
 // Search history to find up to ten links that a user has typed in,
@@ -106,27 +129,36 @@ function buildTypedUrlList(divName) {
     urlArray = [];
 
     // Looking for all the news related articles
-    substrings = ["msn", "drudgereport", "espn", "cnn", "foxnews", "wwd", "nytimes", "buzzfeed", "usatoday", "huffingtonpost", "washingtonpost",
-                  "forbes", "bbc", "dailymail", "cnet", "nbc", "popsugar", "bloomberg", "liveleak", "abc", "ksl", "mydailynews",
-                  "politico", "breitbart", "sfgate", "npr", "cbs", "guardian", "rawstory", "people", "seekingalpha", "businessinsider",
-                  "tmz", "latimes", "bleacherreport", "pitchfork", "cnbc", "gizmodo", "centurylink", "wsj", "rollingstone",
-                  "complex", "nypost", "cracked", "refinery29", "yahoo", "slate", "fivethirtyeight", "thedailybeast", "realclearpolitics",
-                  "lifehacker", "nationalgeographic", "reuters", "theblaze", "telegraph.co.uk", "eonline", "mashable", "marketwatch",
-                  "dailykos", "vogue", "hollywoodreporter", "time", "salon", "newsmax", "univision", "gawker", "caranddriver",
-                  "theatlantic", "chicagotribune", "msnbc", "health", "dailycaller", "littlethings", "kotaku", "zerohedge",
-                  "usmagazine", "howtogeek", "vox", "ibtimes", "hill", "ew", "sportillustrated", "bbc", "realsimple", "rt", "vice",
-                  "thestreet", "alternet", "usnews", "nymag", "infowars", "arstechnica", "independent", "mirror", "deadspin",
-                  "washington", "talkingpointsmemo", "mlive", "philly", "pjmedia", "scout", "startribune", "jezebel", "wnd",
-                  "conservativetribune", "bizjournals", "newyorker", "jalopnik", "bustle", "patch", "bostonglobe", "thrillist",
-                  "onion", "today", "conservatives", "fortune", "avclub", "mic", "vanityfair", "qz", "ibtimes", "inquisitr",
-                  "variety", "inc", "mercury", "detroit", "seattle", "bgr", "thinkprogress", "fastcompany", "abc", "bostonherald",
-                  "entrepreneur", "economist", "space", "science", "aljazeera", "investors", "orlando", "sentinel", "republic",
-                  "pbs", "associated", "aol", "consumer", "nation", "occupy", "uncut", "nationalreview"];
+    substrings = ["drudgereport", "cnn", "foxnews", "nytimes", "buzzfeed", "usatoday", "huffingtonpost", "washingtonpost",
+                  "forbes", "bbc", "nbcnews", "bloomberg", "abcnews", "politico", "breitbart", "npr", "cbsnews",
+                  "theguardian", "tmz", "wsj", "nypost", "yahoo", "slate", "fivethirtyeight", "thedailybeast", "realclearpolitics",
+                  "reuters", "theblaze", "dailykos", "theatlantic", "msnbc", "dailycaller", "thehill", "rt", "alternet", "infowars",
+                  "talkingpointsmemo", "wnd", "newyorker", "washingtonexaminer", "thinkprogress", "economist", "pbs",
+                  "aljazeera", "thenation", "newsweek", "nationalreview"]
+    // substrings = ["msn", "drudgereport", "espn", "cnn", "foxnews", "wwd", "nytimes", "buzzfeed", "usatoday", "huffingtonpost", "washingtonpost",
+    //               "forbes", "bbc", "dailymail", "cnet", "nbc", "popsugar", "bloomberg", "liveleak", "abc", "ksl", "mydailynews",
+    //               "politico", "breitbart", "sfgate", "npr", "cbs", "guardian", "rawstory", "people", "seekingalpha", "businessinsider",
+    //               "tmz", "latimes", "bleacherreport", "pitchfork", "cnbc", "gizmodo", "centurylink", "wsj", "rollingstone",
+    //               "complex", "nypost", "cracked", "refinery29", "yahoo", "slate", "fivethirtyeight", "thedailybeast", "realclearpolitics",
+    //               "lifehacker", "nationalgeographic", "reuters", "theblaze", "telegraph.co.uk", "eonline", "mashable", "marketwatch",
+    //               "dailykos", "vogue", "hollywoodreporter", "time", "salon", "newsmax", "univision", "gawker", "caranddriver",
+    //               "theatlantic", "chicagotribune", "msnbc", "health", "dailycaller", "littlethings", "kotaku", "zerohedge",
+    //               "usmagazine", "howtogeek", "vox", "ibtimes", "hill", "ew", "sportillustrated", "bbc", "realsimple", "rt", "vice",
+    //               "thestreet", "alternet", "usnews", "nymag", "infowars", "arstechnica", "independent", "mirror", "deadspin",
+    //               "washington", "talkingpointsmemo", "mlive", "philly", "pjmedia", "scout", "startribune", "jezebel", "wnd",
+    //               "conservativetribune", "bizjournals", "newyorker", "jalopnik", "bustle", "patch", "bostonglobe", "thrillist",
+    //               "onion", "today", "conservatives", "fortune", "avclub", "mic", "vanityfair", "qz", "ibtimes", "inquisitr",
+    //               "variety", "inc", "mercury", "detroit", "seattle", "bgr", "thinkprogress", "fastcompany", "abc", "bostonherald",
+    //               "entrepreneur", "economist", "space", "science", "aljazeera", "investors", "orlando", "sentinel", "republic",
+    //               "pbs", "associated", "aol", "consumer", "nation", "occupy", "uncut", "nationalreview"];
 
     for (var url in urlToCount) {
-      if (new RegExp(substrings.join("|")).test(url) && !url.includes("git") && !url.includes("cse")) {
+      if (new RegExp(substrings.join("|")).test(url) && !url.includes("git") && !url.includes("developer") && !url.includes("myplan")) {
           urlArray.push(url);
       }
+      // if (new RegExp(substrings.join("|")).test(url) && !url.includes("git") && !url.includes("developer")) {
+      //     urlArray.push(url);
+      // }
     }
 
     // Sort the URLs by the number of times the user typed them.
@@ -134,8 +166,8 @@ function buildTypedUrlList(divName) {
       return urlToCount[b] - urlToCount[a];
     });
 
-    // buildPopupDom(divName, urlArray.slice(0, 10));
     buildPopupDom(divName, urlArray);
+    // buildPopupDom(divName, urlArray);
   };
 }
 

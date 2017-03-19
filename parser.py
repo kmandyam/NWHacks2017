@@ -1,22 +1,51 @@
 from bs4 import BeautifulSoup
 import urllib
+import csv
+from flask import Flask
+from flask import request
+from flask_cors import CORS
 
-url = "https://www.theatlantic.com/international/archive/2017/03/trump-playboy-merkel/520014/"
-html = urllib.urlopen(url).read()
-soup = BeautifulSoup(html, "html.parser")
+app = Flask(__name__)
+CORS(app)
 
-# kill all script and style elements
-for script in soup(["script", "style"]):
-    script.extract()    # rip it out
+@app.route("/spectrum" , methods=['GET', 'POST'])
 
-# get text
-text = soup.get_text()
+def spectrum():
+    urlList = request.form['urlArray']
+    print urlList
+    numberOfArticles = len(urlList)
+    conservativeScore = 1
+    liberalScore = 1
+    for url in urlList:
+        actualURL = url.split("/")[2].split("www.")[1]
+        with open(csv_file, 'data_liberal') as csvfile:
+            for line in csv.file.readLines():
+                if actualURL is line:
+                    liberalScore += 1
+        with open(csv_file, 'data_conservative') as csvfile:
+            for line in csv.file.readLines():
+                if actualURL is line:
+                    conservativeScore += 1
 
-# break into lines and remove leading and trailing space on each
-lines = (line.strip() for line in text.splitlines())
-# break multi-headlines into a line each
-chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
-# drop blank lines
-text = '\n'.join(chunk for chunk in chunks if chunk)
+    conservativeScore = float(conservativeScore)/float(numberOfArticles)
+    liberalScore = float(liberalScore)/float(numberOfArticles)
 
-print(text.encode('utf-8'))
+    if liberalScore > conservativeScore:
+        val = -liberalScore*100
+    elif conservativeScore > liberalScore:
+        val = conservativeScore*100
+    else:
+        val = 0
+    print "FINALLLL VALUEEEEE", str(val)
+    return str(val)
+
+    # return "88"
+
+@app.route("/credibility", methods=['GET', 'POST'])
+
+def credibility():
+    urlArray = request.form['urlArray']
+    # print "FINAL" , urlArray , "FINALLLLLL"
+    return "94"
+
+app.run()

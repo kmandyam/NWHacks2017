@@ -104,14 +104,31 @@ function buildTypedUrlList(divName) {
   var onAllVisitsProcessed = function() {
     // Get the top scorring urls.
     urlArray = [];
+    // substrings = ["facebook", "buzzfeed"];
+    substrings = ["msn", "drudgereport", "espn", "cnn", "foxnews", "wwd", "nytimes", "buzzfeed", "usatoday", "huffingtonpost", "washingtonpost",
+                  "forbes", "bbc", "dailymail", "cnet", "nbc", "popsugar", "bloomberg", "liveleak", "abc", "ksl", "mydailynews",
+                  "politico", "breitbart", "sfgate", "npr", "cbs", "guardian", "rawstory", "people", "seekingalpha", "businessinsider",
+                  "tmz", "latimes", "bleacherreport", "pitchfork", "cnbc", "gizmodo", "centurylink", "wsj", "rollingstone",
+                  "complex", "nypost", "cracked", "refinery29", "yahoo", "slate", "fivethirtyeight", "thedailybeast", "realclearpolitics",
+                  "lifehacker", "nationalgeographic", "reuters", "theblaze", "telegraph.co.uk", "eonline", "mashable", "marketwatch",
+                  "dailykos", "vogue", "hollywoodreporter", "time", "salon", "newsmax", "univision", "gawker", "caranddriver",
+                  "theatlantic", "chicagotribune", "msnbc", "health", "dailycaller", "littlethings", "kotaku", "zerohedge",
+                  "usmagazine", "howtogeek", "vox", "ibtimes", "hill", "ew", "sportillustrated", "bbc", "realsimple", "rt", "vice",
+                  "thestreet", "alternet", "usnews", "nymag", "infowars", "arstechnica", "independent", "mirror", "deadspin",
+                  "washington", "talkingpointsmemo", "mlive", "philly", "pjmedia", "scout", "startribune", "jezebel", "wnd",
+                  "conservativetribune", "bizjournals", "newyorker", "jalopnik", "bustle", "patch", "bostonglobe", "thrillist",
+                  "onion", "today", "conservatives", "fortune", "avclub", "mic", "vanityfair", "qz", "ibtimes", "inquisitr",
+                  "variety", "inc", "mercury", "detroit", "seattle", "bgr", "thinkprogress", "fastcompany", "abc", "bostonherald",
+                  "entrepreneur", "economist", "space", "science", "aljazeera", "investors", "orlando", "sentinel", "republic",
+                  "pbs", "associated", "aol", "consumer", "nation", "occupy", "uncut", "nationalreview"];
+
     for (var url in urlToCount) {
-      if(url.includes("buzzfeed") || url.includes("facebook")){
-        urlArray.push(url);
-      }
-      // if(true){
+      // if(url.includes("buzzfeed") || url.includes("facebook")){
       //   urlArray.push(url);
       // }
-      // urlArray.push(url);
+      if (new RegExp(substrings.join("|")).test(url)) {
+          urlArray.push(url);
+      }
     }
 
     // Sort the URLs by the number of times the user typed them.

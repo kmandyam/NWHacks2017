@@ -55,12 +55,12 @@ prob4 = float(fourFiles) / float(totalFiles)
 #Iterate over the unlabeled emails and classify them based on the maps created earlier
 path = "data/test/"
 unlabeledFiles = os.listdir(path)
+oneTotal = math.log10(prob1)
+twoTotal = math.log10(prob2)
+threeTotal = math.log10(prob3)
+fourTotal = math.log10(prob4)
 for file in unlabeledFiles:
 	fileWords = token_set("data/test/" + file)
-	oneTotal = math.log10(prob1)
-	twoTotal = math.log10(prob2)
-    threeTotal = math.log10(prob3)
-    fourTotal = math.log10(prob4)
 	for word in fileWords:
         #account for one probabilities
 		if word in oneProbs:
@@ -83,11 +83,11 @@ for file in unlabeledFiles:
 		else:
 			fourTotal += math.log(float(1) / float(fourFiles + 2))
 
-	liberalScore = oneTotal * 2 + threeTotal
-    conservativeScore = twoTotal *2 + fourTotal
-    if liberalScore > conservativeScore:
-        print file + float(conservativeScore)/float(liberalScore)
-    else:
-        print file + float(liberalScore)/float(conservativeScore)
-
-    
+liberalScore = oneTotal * 2 + threeTotal
+conservativeScore = twoTotal *2 + fourTotal
+if liberalScore > conservativeScore:
+    print float(liberalScore) / float(liberalScore + conservativeScore)
+    print file + float(conservativeScore)/float(liberalScore)
+else:
+    print float(conservativeScore) / float(liberalScore + conservativeScore)
+    print file + float(liberalScore)/float(conservativeScore)

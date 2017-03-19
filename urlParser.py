@@ -1,12 +1,11 @@
 from bs4 import BeautifulSoup
 import urllib
-#import csv
-#import sys
-#import os
+import csv
+import sys
+import os
 
-#args = sys.argv[1:]
-#folder = args[1]
-#need to find a better way to get the url in here
+args = sys.argv[1:]
+folder = args[1]
 url = args[0]
 html = urllib.urlopen(url).read()
 soup = BeautifulSoup(html, "html.parser")
@@ -33,11 +32,11 @@ chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
 # drop blank lines
 text = '\n'.join(chunk for chunk in chunks if chunk)
 
-#filename = args[2]
-#path = "train/" + folder
-#complete_name = os.path.join(path, filename)
-#f = open(filename, "w+")
+filename = args[2]
+path = "train/" + folder
+complete_name = os.path.join(path, filename)
+f = open(filename, "w+")
 
 f.write(text.encode('utf-8'))
 
-print(text.encode('utf-8'))
+#print(text.encode('utf-8'))

@@ -1,0 +1,13 @@
+Access denied | www.thegatewaypundit.com used Cloudflare to restrict access
+Please enable cookies.
+Error
+1010
+Ray ID: 3421f234e7eb3b1a • 2017-03-19 16:53:07 UTC
+Access denied
+What happened?
+The owner of this website (www.thegatewaypundit.com) has banned your access based on your browser's signature (3421f234e7eb3b1a-ua48).
+Cloudflare Ray ID: 3421f234e7eb3b1a
+•
+Your IP: 206.87.98.235
+•
+Performance & security by Cloudflare

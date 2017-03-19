@@ -1,0 +1,165 @@
+@font-face {
+    font-family: FredokaOne;
+    src: url(../fonts/FredokaOne-Regular.ttf);
+}
+
+html {
+	background-color: #71B7E6;
+}
+
+body {
+	margin: 0px;
+	background-color: #71B7E6;
+	color: #535353;
+	font-family: Arial;
+	line-height: 1.7rem;
+}
+
+.row {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+.container_row {
+	margin: 100px 0;
+}
+
+h1 {
+	font-family: FredokaOne;
+	letter-spacing: 10px;
+	font-size: 2.5rem;
+}
+
+h2 {
+	line-height: 2.3rem;
+	margin-bottom: 30px;
+}
+
+h3 {
+	font-size: 6rem;
+	margin: 60px 0;
+}
+
+p {
+	font-size: 1.1rem;
+}
+
+.navbar {
+	padding: 20px 0;
+	color: white;
+	margin-top: 50px;
+	margin-bottom: 0;
+}
+
+.landing {}
+
+.container {
+	background-color: white;
+	box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.25);
+
+	border-radius: 30px;
+	padding: 20px 50px 40px 50px;
+
+	overflow: hidden;
+	transition: all 0.2s ease;
+}
+
+.container:hover {
+	transform: translateY(-10px);
+	box-shadow: 0px 40px 50px rgba(0, 0, 0, 0.3);
+}
+
+.intro_cont {
+
+}
+
+.intro_cont p {
+	margin-bottom: 40px;
+}
+
+#intro_slant {
+	position: relative;
+	z-index: 0;
+	margin-top: -100px;
+	margin-left: -200px;
+	transform: rotate(-10deg);
+
+	width: 700px;
+	height: 120px;
+	background-color: #eee;
+}
+
+.top {
+	position: relative;
+	z-index: 2;
+}
+
+.button {
+	margin: auto;
+	margin-top: 100px;
+	width: 100px;
+	padding: 10px 20px;
+	border-radius: 10px;
+	border: 2px solid #1ABC9C;
+	color: #1ABC9C;
+
+	transition: all 0.2s ease;
+}
+
+.button:hover {
+	cursor: pointer;
+	background-color: #1ABC9C;
+	color: white;
+}
+
+.aylmao {
+	display: flex;
+}
+
+#newspaper {
+	margin: auto;
+	height: 300px;
+	width: auto;
+}
+
+.overall_score {
+	text-align: center;
+}
+
+.bar {
+	height: 50px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	text-align: center;
+}
+
+.result_spectrum {
+	box-shadow: 0 10px 30px rgba(73, 185, 196, 0.56);
+	margin-left: 20px;
+	margin-right: 20px;
+	display: inline-block;
+	width: 95%;
+	height: 50px;
+	background: #1ABC9C; /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(left, #1ABC9C, #71B7E6); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(right, #1ABC9C, #71B7E6); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(right, #1ABC9C, #71B7E6); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to right, #1ABC9C , #71B7E6); /* Standard syntax */
+}
+
+.pb_pie_chart {
+	text-align: center;
+}
+
+#pie_chart {
+	margin: auto;
+	border-radius: 1000px;
+	box-shadow: 0 10px 30px rgba(28, 188, 156, 0.56);
+	background-color: #1ABC9C;
+	width: 300px;
+	height: 300px;
+}
+
+.credibility {
+	text-align: center;
+}

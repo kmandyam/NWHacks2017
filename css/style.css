@@ -49,6 +49,15 @@ a {
 	color: inherit;
 }
 
+ul, li {
+	list-style: none;
+	padding-left: 0;
+}
+
+li {
+	text-decoration: underline;
+}
+
 .navbar {
 	padding: 20px 0;
 	color: white;
